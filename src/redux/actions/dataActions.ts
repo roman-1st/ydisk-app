@@ -8,3 +8,7 @@ export const addFileAction = (data: any) => {
 export const clearFiles = () => {
     return ({type: DataActionTypes.CLEAR_FILES})
 }
+
+export const uploadingData = (boolean: boolean) => {
+    return ({type: DataActionTypes.UPLOADING_DATA, payload: boolean})
+}

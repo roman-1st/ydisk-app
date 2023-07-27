@@ -1,26 +1,28 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {useActions} from "../../hooks/useActions";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import './LoadFile.css'
-
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 
 const LoadFile = () => {
-    const {addFileAction, clearFiles, fetchURL} = useActions()
-    const {data} = useTypedSelector(state => state.data)
+    const {addFileAction, clearFiles, uploadFiles} = useActions()
+    const {data, uploadingData} = useTypedSelector(state => state.data)
     const {access_token} = useTypedSelector(state => state.auth)
-    // console.log(access_token)
-    console.log(data)
     const loadData = (e: any) => {
-        data.length + e.target.files.length > 100 ? alert("Максимальное количество файлов") : addFileAction(e.target.files)
+        data.length + e.target.files.length > 100 ? alert("Максимальное количество файлов = 100") : addFileAction(e.target.files)
     }
-    useEffect( () => {
-        fetchURL(access_token)
 
-    }, [])
+    const upload = () => {
+        uploadFiles(access_token, data)
+        clearFiles()
+    }
+
+    if (uploadingData) return <FontAwesomeIcon icon={faSpinner} spin size={"2xl"}/>
 
     return (
-        <div>
-            <h3> Выберите файлы для загрузки </h3>
+        <div className="container">
+            <h3 className="title"> Выберите файлы для загрузки </h3>
             <div className="LoadContainer">
                 <input
                     onChange={ (e: any) => loadData(e)}
@@ -29,8 +31,6 @@ const LoadFile = () => {
                     className="input"
                     id="fileInput"
                 />
-
-                {/* Стилизованная кнопка */}
                 <label htmlFor="fileInput" className="custom-file-input">
                     Выбрать файлы
                 </label>
@@ -40,7 +40,9 @@ const LoadFile = () => {
                     className="ClearFiles"
                 > &times;
                 </span>
-                {/*<button onClick={fetchURL}> Отправить </button>*/}
+                <button
+                    className="uploadBtn"
+                    onClick={upload}> Отправить </button>
             </div>
 
         </div>

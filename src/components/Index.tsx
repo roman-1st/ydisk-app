@@ -5,16 +5,12 @@ import {useTypedSelector} from "../hooks/useTypedSelector";
 import {useActions} from "../hooks/useActions";
 
 const Index = () => {
-    const {getAccessToken, fetchURL} = useActions()
+    const {getAccessToken} = useActions()
 
     useEffect(() => {
         const urlSearchParams = new URLSearchParams(window.location.hash.substring(1));
         const accessToken = urlSearchParams.get('access_token');
-        const tokenType = urlSearchParams.get('token_type');
-        const expiresIn = urlSearchParams.get('expires_in');
-
         accessToken && getAccessToken(accessToken)
-        // accessToken && fetchURL(accessToken)
     }, []);
 
     const {access_token} = useTypedSelector( state => state.auth)
@@ -24,7 +20,6 @@ const Index = () => {
             {
                 access_token ? <LoadFile /> : <Auth />
             }
-            {/*<LoadFile />*/}
         </div>
     );
 };

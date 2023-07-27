@@ -6,9 +6,9 @@ const Authorization = () => {
             try {
                 const { handler } = await window.YaAuthSuggest.init(
                     {
-                        client_id: 'c46f0c53093440c39f12eff95a9f2f93',
+                        client_id: 'd1597c2affe54fbda5242b0ad7bf40e3',
                         response_type: 'token',
-                        redirect_uri: 'https://examplesite.com/suggest/token'
+                        redirect_uri: 'https://ydisk-app.vercel.app'
                     },
                     'https://examplesite.com',
                     {

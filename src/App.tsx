@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import LoadFile from "./components/LoadFile";
+import Index from "./components/Index";
 
 function App() {
   return (
     <div className="App">
-        <LoadFile />
+       <Index />
     </div>
   );
 }

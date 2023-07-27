@@ -1,0 +1,28 @@
+
+.custom-file-input {
+    display: inline-block;
+    padding: 8px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.input {
+    display: none;
+}
+
+.ClearFiles {
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.ValueFiles {
+    margin-left: 20px;
+}
+
+.ClearFiles:hover {
+    transition: 0.2s;
+    color: red;
+}

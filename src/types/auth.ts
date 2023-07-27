@@ -4,10 +4,12 @@ export interface authState {
     response_type: string,
     redirect_uri: string,
     access_token: string,
+    Loading: boolean,
 }
 
 export enum authActionTypes {
-    GET_ACCESS_TOKEN = "GET_ACCESS_TOKEN"
+    GET_ACCESS_TOKEN = "GET_ACCESS_TOKEN",
+    LOADING = "LOADING",
 }
 
 export interface getAccessTokenAction {
@@ -15,4 +17,9 @@ export interface getAccessTokenAction {
     payload: string,
 }
 
-export type authActions = getAccessTokenAction
+export interface initLoadingAction {
+    type: authActionTypes.LOADING,
+    payload: boolean,
+}
+
+export type authActions = getAccessTokenAction | initLoadingAction

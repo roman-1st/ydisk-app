@@ -4,10 +4,12 @@ import {useTypedSelector} from "../../hooks/useTypedSelector";
 import "./Auth.css"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons";
+import {fetchURL} from "../../redux/actions/async-actions";
+import axios from "axios";
 
 const Auth = () => {
-    const {LoadingAction} = useActions()
-    const {Loading} = useTypedSelector( state => state.auth)
+    const {LoadingAction, fetchURL} = useActions()
+    const {Loading, client_id} = useTypedSelector( state => state.auth)
     console.log(Loading)
     useEffect(() => {
         const initYaAuthSuggest = async () => {
@@ -15,11 +17,11 @@ const Auth = () => {
             try {
                 const { handler } = await window.YaAuthSuggest.init(
                     {
-                        client_id: 'd1597c2affe54fbda5242b0ad7bf40e3',
+                        client_id: client_id,
                         response_type: 'token',
                         redirect_uri: 'https://ydisk-app.vercel.app'
                     },
-                    'https://examplesite.com',
+                    'https://ydisk-app.vercel.app',
                     {
                         view: 'button',
                         parentId: 'container',
@@ -42,6 +44,15 @@ const Auth = () => {
             }
         };
         initYaAuthSuggest();
+
+        // const getData = async () => {
+
+        //     console.log(response.data)
+        // }
+
+        // getData()
+
+        // fetchURL()
     }, []);
 
     if (Loading) return <FontAwesomeIcon icon={faSpinner} spin size={"2xl"}/>

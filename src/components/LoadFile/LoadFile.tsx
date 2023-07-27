@@ -7,11 +7,16 @@ import './LoadFile.css'
 const LoadFile = () => {
     const {addFileAction, clearFiles, fetchURL} = useActions()
     const {data} = useTypedSelector(state => state.data)
-
+    const {access_token} = useTypedSelector(state => state.auth)
+    // console.log(access_token)
     console.log(data)
     const loadData = (e: any) => {
         data.length + e.target.files.length > 100 ? alert("Максимальное количество файлов") : addFileAction(e.target.files)
     }
+    useEffect( () => {
+        fetchURL(access_token)
+
+    }, [])
 
     return (
         <div>
@@ -35,7 +40,7 @@ const LoadFile = () => {
                     className="ClearFiles"
                 > &times;
                 </span>
-                <button onClick={fetchURL}> Отправить </button>
+                {/*<button onClick={fetchURL}> Отправить </button>*/}
             </div>
 
         </div>

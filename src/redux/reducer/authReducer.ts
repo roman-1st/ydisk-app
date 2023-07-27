@@ -1,9 +1,9 @@
 import {authActions, authActionTypes, authState} from "../../types/auth";
 
 const initialState: authState = {
-    client_id: 'd1597c2affe54fbda5242b0ad7bf40e3',
+    client_id: 'a9ae635bb92d4b829a0691219cc80b4a',
     response_type: 'token',
-    redirect_uri: 'https://ydisk-app.vercel.app',
+    redirect_uri: 'https://localhost:3000',
     access_token: "",
     Loading: false,
 }

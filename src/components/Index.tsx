@@ -5,7 +5,7 @@ import {useTypedSelector} from "../hooks/useTypedSelector";
 import {useActions} from "../hooks/useActions";
 
 const Index = () => {
-    const {getAccessToken} = useActions()
+    const {getAccessToken, fetchURL} = useActions()
 
     useEffect(() => {
         const urlSearchParams = new URLSearchParams(window.location.hash.substring(1));
@@ -14,7 +14,7 @@ const Index = () => {
         const expiresIn = urlSearchParams.get('expires_in');
 
         accessToken && getAccessToken(accessToken)
-
+        // accessToken && fetchURL(accessToken)
     }, []);
 
     const {access_token} = useTypedSelector( state => state.auth)
